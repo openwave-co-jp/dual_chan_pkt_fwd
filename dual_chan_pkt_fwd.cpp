@@ -230,6 +230,10 @@ char interface[6];     // Used to set the interface to communicate to the intern
 #define FRF_LSB                  0x66
 
 #define BUFLEN 2048  //Max length of buffer
+#define REG_PA_CFG 0x09
+int PWR_JPN_1276 = 0x3f;
+int PWR_JPN_1272 = 0xe;
+
 
 #define PROTOCOL_VERSION  1
 #define PKT_PUSH_DATA 0
@@ -429,6 +433,14 @@ void SetupLoRa(byte CE)
   // Set Continous Receive Mode
   WriteRegister(REG_LNA, LNA_MAX_GAIN, CE);  // max lna gain
   WriteRegister(REG_OPMODE, SX72_MODE_RX_CONTINUOS, CE);
+
+  if (sx1272) {
+    WriteRegister(REG_PA_CFG, PWR_JPN_1272, CE);
+  } else {
+  // sx1276
+    WriteRegister(REG_PA_CFG, PWR_JPN_1276, CE);
+  }
+
 }
 
 void SolveHostname(const char* p_hostname, uint16_t port, struct sockaddr_in* p_sin)
