@@ -5,8 +5,8 @@ After=network.target
 
 [Service]
 Type=simple
-WorkingDirectory=/home/pi/dual_chan_pkt_fwd/
-ExecStart=/home/pi/dual_chan_pkt_fwd/dual_chan_pkt_fwd 
+WorkingDirectory=/var/lib/dual_chan_pkt_fwd/
+ExecStart=/usr/bin/dual_chan_pkt_fwd
 Restart=on-failure
 RestartSec=5
 
